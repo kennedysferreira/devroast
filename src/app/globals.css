@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Fonts */
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+  --font-secondary: "IBM Plex Mono", monospace;
+
+  /* Backgrounds */
+  --color-page: #0a0a0a;
+  --color-surface: #0f0f0f;
+  --color-input: #111111;
+  --color-elevated: #1a1a1a;
+
+  /* Border */
+  --color-border: #2a2a2a;
+
+  /* Text */
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #4b5563;
+
+  /* Accents */
+  --color-accent-green: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-red: #ef4444;
+
+  /* Code syntax */
+  --color-code: #ffc799;
+
+  /* Diff */
+  --color-diff-removed: #1a0a0a;
+  --color-diff-added: #0a1a0f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-page text-text-primary font-mono;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
