@@ -1,65 +1,125 @@
-import Image from "next/image";
+import Link from "next/link";
+import { HomeOptionsRow } from "@/components/home-options-row";
+import { LeaderboardRow } from "@/components/leaderboard-row";
+import { Button } from "@/components/ui/button";
+import { CodeBlock } from "@/components/ui/code-block";
 
-export default function Home() {
+const calculateTotalCode = `function calculateTotal(items) {
+  var total = 0;
+  for (var i = 0; i < items.length; i++) {
+    total = total + items[i].price;
+  }
+  if (total > 100) {
+    console.log("discount applied");
+    total = total * 0.9;
+  }
+  // TODO: handle tax calculation
+  // TODO: handle currency conversion
+}`;
+
+const leaderboardRows = [
+  {
+    rank: 1,
+    score: "1.2",
+    code: `eval(prompt("enter code"))\ndocument.write(response)\n// trust the user lol`,
+    lang: "javascript",
+  },
+  {
+    rank: 2,
+    score: "1.8",
+    code: `if (x == true) { return true; }\nelse if (x == false) { return false; }\nelse { return !false; }`,
+    lang: "typescript",
+  },
+  {
+    rank: 3,
+    score: "2.1",
+    code: `SELECT * FROM users WHERE 1=1\n-- TODO: add authentication`,
+    lang: "sql",
+  },
+];
+
+export default async function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main>
+      <div className="max-w-[1120px] mx-auto px-10">
+        {/* Hero */}
+        <section className="py-20 text-center">
+          <h1 className="font-mono text-[40px] font-bold leading-tight text-text-primary">
+            <span className="text-accent-green">$</span> paste your code. get
+            roasted.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-3 font-mono text-sm text-text-tertiary">
+            {
+              "// drop your code below and we'll rate it — brutally honest or full roast mode"
+            }
           </p>
+        </section>
+
+        {/* Code input panel */}
+        <div className="max-w-[780px] mx-auto">
+          <CodeBlock>
+            <CodeBlock.Header filename="calculateTotal.js" />
+            <CodeBlock.Content code={calculateTotalCode} lang="javascript" />
+          </CodeBlock>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Actions bar */}
+        <div className="max-w-[780px] mx-auto mt-4">
+          <HomeOptionsRow />
         </div>
-      </main>
-    </div>
+
+        {/* Stats */}
+        <p className="mt-3 font-mono text-xs text-text-tertiary text-center">
+          2,847 codes roasted · avg score: 4.2/10
+        </p>
+
+        {/* Divider */}
+        <div className="my-14 border-t border-border" />
+
+        {/* Leaderboard */}
+        <section className="max-w-[960px] mx-auto">
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-mono text-sm font-bold text-text-secondary">
+              {"// shame_leaderboard"}
+            </span>
+            <Button variant="ghost" size="sm">
+              $ view_all {">>"}
+            </Button>
+          </div>
+
+          <p className="mb-6 font-mono text-xs text-text-tertiary">
+            {"// the worst code on the internet, ranked by shame"}
+          </p>
+
+          {/* Table header */}
+          <div className="grid grid-cols-[48px_72px_1fr_100px] gap-4 border-b border-border pb-2">
+            <span className="font-mono text-xs text-text-tertiary">#</span>
+            <span className="font-mono text-xs text-text-tertiary">score</span>
+            <span className="font-mono text-xs text-text-tertiary">code</span>
+            <span className="font-mono text-xs text-text-tertiary">lang</span>
+          </div>
+
+          {/* Table rows */}
+          {leaderboardRows.map((row) => (
+            <LeaderboardRow key={row.rank}>
+              <LeaderboardRow.Rank>{row.rank}</LeaderboardRow.Rank>
+              <LeaderboardRow.Score>{row.score}</LeaderboardRow.Score>
+              <LeaderboardRow.Code>{row.code}</LeaderboardRow.Code>
+              <LeaderboardRow.Lang>{row.lang}</LeaderboardRow.Lang>
+            </LeaderboardRow>
+          ))}
+
+          <p className="mt-6 mb-20 font-mono text-center text-xs text-text-tertiary">
+            showing top 3 of 2,847 ·{" "}
+            <Link
+              href="/leaderboard"
+              className="hover:text-text-primary transition-colors"
+            >
+              view full leaderboard {">>"}
+            </Link>
+          </p>
+        </section>
+      </div>
+    </main>
   );
 }
