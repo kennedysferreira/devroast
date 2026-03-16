@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# devroast
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+paste your code. get roasted.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**devroast** is a brutally honest AI code reviewer that tells you what your linter is too polite to say.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Drop in any snippet and get back a score from **0 to 10** — where 10 means "please delete this file" — along with a breakdown of everything wrong, grouped by how much you should panic:
 
-## Learn More
+- 🔴 **Critical** — fix this before it fixes you
+- 🟡 **Warning** — it works, but future you will suffer
+- 🔵 **Todo** — low priority, but come on
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Modes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Honest mode** — clinical, precise, zero mercy. The kind of review you'd get from a senior engineer who has seen too much.
 
-## Deploy on Vercel
+**Roast mode** — same issues, different energy. Your code gets the full stand-up treatment.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Leaderboard
+
+The worst code on the internet, curated and ranked. Submit your score and claim your place in history.
+
+---
+
+> *"Your variable names are a cry for help."*
